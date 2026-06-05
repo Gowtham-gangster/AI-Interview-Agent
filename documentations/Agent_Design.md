@@ -424,4 +424,4 @@ sequenceDiagram
 
 # Conclusion
 
-The AI Interview Trainer platform uses a specialized multi-agent architecture to provide intelligent, scalable, and personalized interview preparation. Each agent performs a dedicated role, enabl[...]
+The AI Interview Trainer platform uses a specialized multi-agent architecture to provide intelligent, scalable, and personalized interview preparation. Each agent performs a dedicated role, enabling the system to deliver technical coaching, HR preparation, answer evaluation, and readiness assessment through a coordinated workflow.
