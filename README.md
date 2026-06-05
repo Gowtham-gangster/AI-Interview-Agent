@@ -94,126 +94,169 @@ This architecture enables an end-to-end interview preparation experience tailore
 
 ---
 
-# Solution Architecture
+## System Architecture
 
-```text
-┌──────────────────────────────┐
-│           USER               │
-│                              │
-│ • Upload Resume              │
-│ • Ask Questions              │
-│ • Start Mock Interview       │
-│ • Request Feedback           │
-└──────────────┬───────────────┘
-               │
-               ▼
+```mermaid
+flowchart TB
 
-┌──────────────────────────────────────────────┐
-│         INTERVIEW TRAINER AGENT              │
-│      (Central Orchestrator / Coordinator)    │
-└──────────────┬───────────────────────────────┘
-               │
+    User([Candidate / User])
 
- ┌─────────────┼─────────────┬─────────────┐
- │             │             │             │
- ▼             ▼             ▼             ▼
+    ITA["Interview Trainer Agent
+    (Central Orchestrator)"]
 
-Resume       Technical      Question
-Analyzer     Interview      Generator
-Agent         RAG Agent      Agent
+    RA["Resume Analyzer Agent"]
+    RAG["Technical Interview RAG Agent"]
+    QG["Question Generator Agent"]
 
- │             │             │
- ▼             ▼             ▼
+    HR["HR Coach Agent"]
+    SS["Soft Skills Coach Agent"]
 
-Skill      Technical       New Interview
-Extraction Questions       Questions
+    AE["Answer Evaluation Agent"]
+    FB["Feedback Agent"]
 
-Experience Model Answers   Role-Based Questions
+    KB[("Interview Knowledge Base
+    Java
+    Spring Boot
+    MySQL
+    DSA
+    Company Questions")]
 
-Projects   Concepts        Project Questions
+    Report["Final Assessment Report
+    Readiness Score
+    Improvement Plan"]
 
-Education  Company Qs      Fallback Questions
+    User --> ITA
 
+    ITA --> RA
+    ITA --> RAG
+    ITA --> QG
 
- ┌─────────────┬─────────────┬─────────────┐
- │             │             │
- ▼             ▼             ▼
+    RAG <--> KB
 
-HR Coach    Soft Skills     Answer
-Agent       Coach Agent     Evaluation Agent
+    ITA --> HR
+    ITA --> SS
 
- │             │             │
- ▼             ▼             ▼
+    RA --> AE
+    RAG --> AE
+    QG --> AE
+    HR --> AE
+    SS --> AE
 
-HR Q&A      Communication   Scoring
+    AE --> FB
+    FB --> Report
 
-Behavioral  Leadership      Strengths
-
-Career      Teamwork        Weaknesses
-
-Goals       GD Practice     Improvements
-
-
-               ▼
-
-        Feedback Agent
-
-               ▼
-
-      Final Assessment
-
-      Readiness Score
-
-      Improvement Plan
+    Report --> User
 ```
 
 ---
 
-# Knowledge Base Architecture
+## Multi-Agent Responsibilities
 
-```text
-┌─────────────────────────────┐
-│ Interview Knowledge Base    │
-├─────────────────────────────┤
-│ java.txt                    │
-│ springboot.txt              │
-│ mysql.txt                   │
-│ dsa.txt                     │
-│ infosys.txt                 │
-└─────────────────────────────┘
-              │
-              ▼
-   Technical Interview RAG Agent
+```mermaid
+flowchart LR
+
+    ITA["Interview Trainer Agent"]
+
+    ITA --> RA["Resume Analyzer"]
+    ITA --> RAG["Technical RAG"]
+    ITA --> QG["Question Generator"]
+    ITA --> HR["HR Coach"]
+    ITA --> SS["Soft Skills Coach"]
+    ITA --> AE["Answer Evaluation"]
+    ITA --> FB["Feedback Agent"]
+
+    RA --> RA1["Resume Parsing"]
+    RA --> RA2["Skill Extraction"]
+
+    RAG --> RAG1["Interview Questions"]
+    RAG --> RAG2["Model Answers"]
+
+    QG --> QG1["Role-Based Questions"]
+    QG --> QG2["Project Questions"]
+
+    HR --> HR1["Behavioral Questions"]
+    HR --> HR2["HR Coaching"]
+
+    SS --> SS1["Communication"]
+    SS --> SS2["Leadership"]
+
+    AE --> AE1["Scoring"]
+    AE --> AE2["Improvement Suggestions"]
+
+    FB --> FB1["Readiness Assessment"]
+    FB --> FB2["Improvement Plan"]
 ```
 
 ---
 
-# Workflow
+## Knowledge Base Architecture
 
-```text
-Resume Upload
-      │
-      ▼
-Resume Analysis
-      │
-      ▼
-Candidate Profile Creation
-      │
-      ▼
-Preparation Mode
-      │
-      ▼
-Mock Interview
-(5 Questions)
-      │
-      ▼
-Answer Evaluation
-      │
-      ▼
-Final Assessment
-      │
-      ▼
-Interview Readiness Report
+```mermaid
+flowchart LR
+
+    KB["Interview Knowledge Base"]
+
+    JAVA["java.txt"]
+    SPRING["springboot.txt"]
+    MYSQL["mysql.txt"]
+    DSA["dsa.txt"]
+    INFOSYS["infosys.txt"]
+
+    RAG["Technical Interview RAG Agent"]
+
+    KB --> JAVA
+    KB --> SPRING
+    KB --> MYSQL
+    KB --> DSA
+    KB --> INFOSYS
+
+    JAVA --> RAG
+    SPRING --> RAG
+    MYSQL --> RAG
+    DSA --> RAG
+    INFOSYS --> RAG
+```
+
+---
+
+## Interview Preparation Workflow
+
+```mermaid
+flowchart TD
+
+    A[Upload Resume / Enter Job Role]
+    B[Resume Analysis]
+    C[Skill Extraction]
+    D[Experience Assessment]
+    E[Personalized Preparation]
+
+    F[Technical Preparation]
+    G[HR Preparation]
+    H[Soft Skills Preparation]
+
+    I[Mock Interview]
+    J[Question Evaluation]
+    K[Score Generation]
+    L[Final Assessment Report]
+    M[Interview Readiness Score]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+
+    E --> F
+    E --> G
+    E --> H
+
+    F --> I
+    G --> I
+    H --> I
+
+    I --> J
+    J --> K
+    K --> L
+    L --> M
 ```
 
 ---
@@ -444,51 +487,43 @@ The agent:
 
 ## 1. Agent Dashboard
 
-Screenshot:
-![Agent Dashboard](screenshots/02_Interview Trainer Agent.png)
-`02_Interview Trainer Agent.png`
+![Agent Dashboard](screenshots/02_Interview_Trainer_Agent.png)
 
 ---
 
 ## 2. Multi-Agent Architecture
 
-Screenshot:
-`01_Multiple Agents.jpg`
+![Agent Dashboard](screenshots/01_Multiple_Agents.jpg)
 
 ---
 
 ## 3. Resume Analysis
 
-Screenshot:
-`04_Resume Analysis.png`
+![Agent Dashboard](screenshots/04_Resume_Analysis.png)
 
 ---
 
 ## 4. Technical Interview Preparation
 
-Screenshot:
-`05_Technical Preparation.png`
+![Agent Dashboard](screenshots/05_Technical_Preparation.png)
 
 ---
 
 ## 5. Mock Interview Session
 
-Screenshot:
-`07_Mock Interview.png`
+![Agent Dashboard](screenshots/07_Mock_Interview.png)
 
 ---
 
 ## 6. Final Assessment Report
 
-Screenshot:
-`09_Final Assessment Report.png`
+![Agent Dashboard](screenshots/09_Final_Assessment_Report.png)
 
 ---
 
 ## 7. Knowledge Base
 
-Screenshot:
-`10_Knowledge Base.png`
+![Knowledge Base](screenshots/10_RAG_Knowledge_Base.png)
 
 ---
 
