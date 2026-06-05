@@ -645,7 +645,7 @@ AI-Interview-Trainer-Agent/
 │   ├── dsa.txt
 │   └── infosys.txt
 │
-└── documentation/
+└── documentations/
     ├── Agent_Design.md
     ├── Architecture.md
     ├── Knowledge_Base_Design.md
