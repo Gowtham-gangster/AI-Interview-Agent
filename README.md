@@ -593,7 +593,8 @@ The system successfully demonstrates:
 ## AI Platform
 
 * IBM watsonx Orchestrate
-* IBM watsonx Services
+* IBM Watson Speech-to-Text
+* IBM Watson Text-to-Speech
 
 ## Model
 
