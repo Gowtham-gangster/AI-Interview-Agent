@@ -375,4 +375,4 @@ Compared to a traditional chatbot:
 
 The Knowledge Base is the foundation of the AI Interview Trainer Agent.
 
-By combining structured interview content with Retrieval-Augmented Generation (RAG), the system delivers accurate, personalized, and scalable interview preparation experiences for technical, HR, [...]
+By combining structured interview content with Retrieval-Augmented Generation (RAG), the system delivers accurate, personalized, and scalable interview preparation experiences for technical, HR, and company-specific interview scenarios.
