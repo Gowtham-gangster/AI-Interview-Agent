@@ -6,7 +6,7 @@
 
 The AI Interview Trainer Agent is a multi-agent interview preparation platform built using IBM watsonx Orchestrate and Retrieval-Augmented Generation (RAG).
 
-The system helps candidates prepare for technical interviews, HR interviews, behavioral interviews, communication rounds, and mock assessments through a coordinated network of specialized AI agents[...]
+The system helps candidates prepare for technical interviews, HR interviews, behavioral interviews, communication rounds, and mock assessments through a coordinated network of specialized AI agents.
 
 The platform analyzes candidate profiles, retrieves interview knowledge from a curated knowledge base, evaluates responses, and generates personalized readiness assessments.
 
@@ -311,4 +311,4 @@ Interview readiness score and improvement plan are presented to the candidate.
 
 The AI Interview Trainer Agent provides a complete interview preparation ecosystem by combining IBM watsonx Orchestrate, Multi-Agent Architecture, and Retrieval-Augmented Generation (RAG).
 
-The platform delivers personalized interview coaching, mock assessments, answer evaluation, and readiness reporting, helping candidates improve confidence and succeed in competitive hiring enviro[...]
+The platform delivers personalized interview coaching, mock assessments, answer evaluation, and readiness reporting, helping candidates improve confidence and succeed in competitive hiring environments.
