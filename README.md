@@ -637,9 +637,10 @@ AI-Interview-Agent/
 │   ├── 07_Mock_Interview.png
 │   ├── 08_Answer_Evaluation.png
 │   ├── 09_Final_Assessment_Report.png
-│   └── 10_RAG_Knowledge_Base.png
+│   ├── 10_RAG_Knowledge_Base.png
 │   ├── 11_Voice_Feature.mp4
 │   ├── 12_Speech_to_Text_Conversion.png
+│   └── embedded_agent.png
 │
 ├── knowledge-base/
 │   ├── java.txt
