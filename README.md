@@ -445,6 +445,7 @@ The agent:
 ## 1. Agent Dashboard
 
 Screenshot:
+![Agent Dashboard](screenshots/02_Interview Trainer Agent.png)
 `02_Interview Trainer Agent.png`
 
 ---
