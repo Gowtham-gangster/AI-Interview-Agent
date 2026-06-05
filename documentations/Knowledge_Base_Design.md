@@ -331,7 +331,6 @@ The current implementation contains:
 | mysql.txt        | MySQL Interview Preparation       |
 | dsa.txt          | Data Structures & Algorithms      |
 | infosys.txt      | Company-Specific Questions        |
-| hr_questions.txt | HR Interview Preparation          |
 
 ---
 
