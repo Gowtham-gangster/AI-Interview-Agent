@@ -646,11 +646,11 @@ AI-Interview-Trainer-Agent/
 │   └── infosys.txt
 │
 └── documentation/
-    ├── java.txt
-    ├── springboot.txt
-    ├── mysql.txt
-    ├── dsa.txt
-    └── infosys.txt
+    ├── Agent_Design.md
+    ├── Architecture.md
+    ├── Knowledge_Base_Design.md
+    ├── Setup_Guide.md
+    └── Testing_Report.md
 ```
 ---
 
@@ -676,6 +676,9 @@ Successfully implemented:
 
 ✅ Knowledge Base Integration
 
+✅ Voice-Based Interviews
+
+
 ---
 
 # Business Impact
@@ -694,7 +697,6 @@ The platform delivers structured, personalized, and scalable interview coaching,
 
 # Future Enhancements
 
-* Voice-based interviews
 * Video interview simulation
 * Frontend web application
 * Candidate dashboard
