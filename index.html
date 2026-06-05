@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Trainer Agent</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 40px;
+        background: #f5f7fa;
+        text-align: center;
+    }
+
+    h1 {
+        color: #0f62fe;
+    }
+
+    p {
+        color: #555;
+    }
+
+    #root {
+        margin-top: 20px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<h1>AI Interview Trainer Agent</h1>
+
+<p>
+Agentic AI-powered interview preparation platform built using IBM watsonx Orchestrate, RAG, Speech-to-Text, and Text-to-Speech.
+</p>
+
+<div id="root"></div>
+
+<script>
+  window.wxOConfiguration = {
+    orchestrationID: "ed557a7693944eb6a94a6558f1a5e639_bf1c6820-5a61-43b1-838a-6155f940e62f",
+    hostURL: "https://au-syd.watson-orchestrate.cloud.ibm.com",
+    rootElementID: "root",
+    deploymentPlatform: "ibmcloud",
+    crn: "crn:v1:bluemix:public:watsonx-orchestrate:au-syd:a/ed557a7693944eb6a94a6558f1a5e639:bf1c6820-5a61-43b1-838a-6155f940e62f::",
+    chatOptions: {
+        agentId: "2ba0b90f-3b8a-43c3-9ce9-b56f57c193f0", 
+        agentEnvironmentId: "fb7b924c-1b18-438d-9980-acb07db098bf",
+    }
+  };
+  setTimeout(function () {
+    const script = document.createElement('script');
+    script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
+    script.addEventListener('load', function () {
+        wxoLoader.init();
+    });
+    document.head.appendChild(script);
+  }, 0);                     
+</script>
+
+</body>
+</html>
