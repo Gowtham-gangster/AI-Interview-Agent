@@ -236,7 +236,7 @@ flowchart LR
 
 ---
 
-## Interview Preparation Workflow
+## Workflow Architecture
 
 ```mermaid
 flowchart TD
