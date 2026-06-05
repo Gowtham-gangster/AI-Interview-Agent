@@ -4,7 +4,7 @@
 
 ## Overview
 
-The AI Interview Trainer platform follows a Multi-Agent Architecture pattern where a central Interview Trainer Agent coordinates multiple specialized agents to deliver personalized interview prepar[...]
+The AI Interview Trainer platform follows a Multi-Agent Architecture pattern where a central Interview Trainer Agent coordinates multiple specialized agents to deliver personalized interview preparation, mock interviews, answer evaluation, and readiness assessments.
 
 Each agent is designed with a specific responsibility and collaborates with other agents to provide an end-to-end interview preparation experience.
 
