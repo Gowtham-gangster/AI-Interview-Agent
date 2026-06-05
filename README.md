@@ -620,7 +620,7 @@ The system successfully demonstrates:
 # Repository Structure
 
 ```text
-AI-Interview-Trainer-Agent/
+AI-Interview-Agent/
 │
 ├── README.md
 │
