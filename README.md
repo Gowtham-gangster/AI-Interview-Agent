@@ -94,6 +94,23 @@ This architecture enables an end-to-end interview preparation experience tailore
 
 ---
 
+# Key Contributions
+
+This project introduces a multi-agent interview preparation ecosystem powered by IBM watsonx Orchestrate and Retrieval-Augmented Generation (RAG).
+
+Key contributions include:
+
+- Resume-based interview preparation
+- Multi-agent orchestration for specialized interview coaching
+- Technical interview preparation using RAG
+- HR and behavioral interview coaching
+- Communication and soft skills development
+- Automated mock interview assessment
+- Personalized interview readiness evaluation
+- Knowledge-driven interview question retrieval
+
+---
+
 ## System Architecture
 
 ```mermaid
@@ -483,6 +500,32 @@ The agent:
 
 ---
 
+# Challenge Alignment
+
+This solution directly addresses the challenge requirements by:
+
+✅ Resume-Based Preparation
+
+✅ Role-Based Interview Preparation
+
+✅ Technical Interview Question Retrieval
+
+✅ HR & Behavioral Interview Coaching
+
+✅ Soft Skills Development
+
+✅ Retrieval-Augmented Generation (RAG)
+
+✅ Mock Interview Assessments
+
+✅ Answer Evaluation & Scoring
+
+✅ Personalized Improvement Suggestions
+
+✅ Final Readiness Assessment
+
+---
+
 # Screenshots
 
 ## 1. Agent Dashboard
@@ -527,11 +570,30 @@ The agent:
 
 ---
 
+# Demonstrated Capabilities
+
+The system successfully demonstrates:
+
+- Resume Analysis
+- Skill Extraction
+- Experience Assessment
+- Technical Interview Preparation
+- HR Interview Preparation
+- Behavioral Interview Coaching
+- Communication Skills Coaching
+- Mock Interview Execution
+- Answer Evaluation
+- Readiness Assessment
+- Knowledge Retrieval using RAG
+
+---
+
 # Technology Stack
 
 ## AI Platform
 
 * IBM watsonx Orchestrate
+* IBM watsonx Services
 
 ## Model
 
@@ -553,6 +615,43 @@ The agent:
 * Answer Evaluation Agent
 * Feedback Agent
 
+---
+
+# Repository Structure
+
+```text
+AI-Interview-Trainer-Agent/
+│
+├── README.md
+│
+├── screenshots/
+│   ├── 01_Multiple_Agents.jpg
+│   ├── 02_Interview_Trainer_Agent.png
+│   ├── 03_Interview_Trainer_Toolset.png
+│   ├── 04_Resume_Analysis.png
+│   ├── 05_Technical_Preparation.png
+│   ├── 06_HR_Preparation.png
+│   ├── 07_Mock_Interview.png
+│   ├── 08_Answer_Evaluation.png
+│   ├── 09_Final_Assessment_Report.png
+│   └── 10_RAG_Knowledge_Base.png
+│   ├── 11_Voice_Feature.mp4
+│   ├── 12_Speech_to_Text_Conversion.png
+│
+├── knowledge-base/
+│   ├── java.txt
+│   ├── springboot.txt
+│   ├── mysql.txt
+│   ├── dsa.txt
+│   └── infosys.txt
+│
+└── documentation/
+    ├── java.txt
+    ├── springboot.txt
+    ├── mysql.txt
+    ├── dsa.txt
+    └── infosys.txt
+```
 ---
 
 # Outcomes
@@ -579,6 +678,20 @@ Successfully implemented:
 
 ---
 
+# Business Impact
+
+The AI Interview Trainer Agent helps:
+
+- Students preparing for campus placements
+- Fresh graduates preparing for technical interviews
+- Professionals preparing for job transitions
+- Candidates improving communication skills
+- Organizations providing interview readiness training
+
+The platform delivers structured, personalized, and scalable interview coaching, helping candidates improve confidence and increase success rates in competitive hiring environments.
+
+---
+
 # Future Enhancements
 
 * Voice-based interviews
@@ -594,8 +707,10 @@ Successfully implemented:
 
 # Author
 
-Pusuloori Gowtham
+**Pusuloori Gowtham**
 
-B.Tech – Computer Science & Engineering
+Bachelor of Technology (B.Tech)
+Computer Science & Engineering
 
-AI Interview Trainer Agent using IBM watsonx Orchestrate
+Project:
+AI Interview Trainer Agent using IBM watsonx Orchestrate and Retrieval-Augmented Generation (RAG)
