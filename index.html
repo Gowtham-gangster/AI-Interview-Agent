@@ -1,66 +1,610 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AI Interview Trainer Agent</title>
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 40px;
-        background: #f5f7fa;
-        text-align: center;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    h1 {
-        color: #0f62fe;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    p {
-        color: #555;
-    }
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f4e 50%, #0f1a3c 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-    #root {
-        margin-top: 20px;
-    }
-</style>
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(90deg, rgba(10, 14, 39, 0.95), rgba(26, 31, 78, 0.95));
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(99, 165, 250, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
 
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #63a5fa, #22d3ee, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(99, 165, 250, 0.3);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 10%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.25), transparent 50%),
+                radial-gradient(circle at 40% 0%, rgba(99, 165, 250, 0.2), transparent 40%),
+                linear-gradient(135deg, #0a0e27 0%, #1a1f4e 50%, #2d1b69 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15), transparent);
+            border-radius: 50%;
+            top: -100px;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.15), transparent);
+            border-radius: 50%;
+            bottom: 10%;
+            right: 5%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(
+                    120deg,
+                    #63a5fa,
+                    #22d3ee,
+                    #a855f7,
+                    #ec4899,
+                    #63a5fa);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 8s ease infinite;
+            text-shadow: 0 0 60px rgba(99, 165, 250, 0.3);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero p {
+            font-size: 22px;
+            line-height: 1.8;
+            color: #e0e7ff;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+            color: white;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 50px rgba(37, 99, 235, 0.7);
+        }
+
+        .secondary-btn {
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #63a5fa, #22d3ee, #a855f7) 1;
+            color: white;
+            background: rgba(99, 165, 250, 0.05);
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-6px);
+            background: rgba(99, 165, 250, 0.15);
+            box-shadow: 0 15px 50px rgba(99, 165, 250, 0.4);
+        }
+
+        section {
+            padding: 100px 8%;
+            position: relative;
+        }
+
+        section:nth-child(3) {
+            background: linear-gradient(135deg, #0f1a3c 0%, #1a1f4e 100%);
+        }
+
+        section:nth-child(4) {
+            background: linear-gradient(135deg, #1a1f4e 0%, #2d1b69 100%);
+        }
+
+        section:nth-child(5) {
+            background: linear-gradient(135deg, #0a0e27 0%, #1f1f5c 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 60px;
+            background: linear-gradient(90deg, #63a5fa, #22d3ee, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.6));
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid;
+            border-image: linear-gradient(135deg, rgba(99, 165, 250, 0.5), rgba(34, 211, 238, 0.3)) 1;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(99, 165, 250, 0.3), 0 0 40px rgba(34, 211, 238, 0.2);
+            border-color: rgba(34, 211, 238, 0.6);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            background: linear-gradient(90deg, #63a5fa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .why-us {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8));
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(99, 165, 250, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+            border-color: rgba(34, 211, 238, 0.5);
+            box-shadow: 0 15px 40px rgba(34, 211, 238, 0.2);
+        }
+
+        .feature-box h4 {
+            background: linear-gradient(90deg, #22d3ee, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .feature-box p {
+            color: #cbd5e1;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .tech {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.6));
+            padding: 30px;
+            border-radius: 18px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(99, 165, 250, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .tech:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+            border-color: rgba(168, 85, 247, 0.6);
+        }
+
+        .tech h3 {
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .tech p {
+            color: #cbd5e1;
+        }
+
+        .footer {
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #020617, #0a0e27);
+            color: #94a3b8;
+            border-top: 1px solid rgba(99, 165, 250, 0.2);
+        }
+
+        .footer h3 {
+            background: linear-gradient(90deg, #63a5fa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, #22d3ee, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        @keyframes pointRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        .pointer {
+            position: fixed;
+            bottom: 100px;
+            right: 80px;
+            font-size: 18px;
+            color: #22d3ee;
+            font-weight: 600;
+            z-index: 999;
+            animation: pointRight 1.5s infinite;
+        }
+
+        @media(max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .pointer {
+                bottom: 80px;
+                right: 40px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>AI Interview Trainer Agent</h1>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">AI Interview Trainer Agent</div>
+    </div>
 
-<p>
-Agentic AI-powered interview preparation platform built using IBM watsonx Orchestrate, RAG, Speech-to-Text, and Text-to-Speech.
-</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Prepare Smarter.<br>Interview Better.</h1>
 
-<div id="root"></div>
+            <p>
+                An AI-powered Interview Preparation Platform built using
+                <span class="highlight">IBM watsonx Orchestrate</span>,
+                <span class="highlight">GPT-OSS 120B</span>,
+                <span class="highlight">RAG</span>,
+                <span class="highlight">Speech-to-Text</span>, and
+                <span class="highlight">Text-to-Speech</span>.
+            </p>
 
-<script>
-  window.wxOConfiguration = {
-    orchestrationID: "ed557a7693944eb6a94a6558f1a5e639_bf1c6820-5a61-43b1-838a-6155f940e62f",
-    hostURL: "https://au-syd.watson-orchestrate.cloud.ibm.com",
-    rootElementID: "root",
-    deploymentPlatform: "ibmcloud",
-    crn: "crn:v1:bluemix:public:watsonx-orchestrate:au-syd:a/ed557a7693944eb6a94a6558f1a5e639:bf1c6820-5a61-43b1-838a-6155f940e62f::",
-    chatOptions: {
-        agentId: "2ba0b90f-3b8a-43c3-9ce9-b56f57c193f0", 
-        agentEnvironmentId: "fb7b924c-1b18-438d-9980-acb07db098bf",
-    }
-  };
-  setTimeout(function () {
-    const script = document.createElement('script');
-    script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
-    script.addEventListener('load', function () {
-        wxoLoader.init();
-    });
-    document.head.appendChild(script);
-  }, 0);                     
-</script>
+            <a href="#features" class="btn primary-btn">
+                Explore Features
+            </a>
+
+            <a href="https://github.com/Gowtham-gangster/AI-Interview-Agent" target="_blank" class="btn secondary-btn">
+                View GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+        <h2 class="section-title">Core Features</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Resume Analysis</h3>
+                <p>
+                    Extracts skills, projects, education,
+                    experience level and recommended job roles.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Technical Preparation</h3>
+                <p>
+                    RAG-powered preparation for Java,
+                    Spring Boot, MySQL, DSA and company interviews.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Company-Specific Questions</h3>
+                <p>
+                    Curated questions and insights specific to target companies,
+                    culture fit evaluation and company research guidance.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>HR Interview Coach</h3>
+                <p>
+                    Personalized HR and behavioral interview guidance
+                    with model answers and coaching.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Soft Skills Coaching</h3>
+                <p>
+                    Communication, teamwork, leadership,
+                    self-introduction and confidence building.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Mock Interviews</h3>
+                <p>
+                    Interactive interview sessions with
+                    scoring, feedback and performance tracking.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Final Assessment</h3>
+                <p>
+                    Generates strengths, weaknesses,
+                    readiness scores and improvement plans.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section>
+        <h2 class="section-title">Why Choose Our Solution?</h2>
+
+        <div class="why-us">
+            <div class="feature-box">
+                <h4>Resume-Based Personalization</h4>
+                <p>Questions and coaching adapt to the candidate profile.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4>Agentic AI Architecture</h4>
+                <p>Multiple specialized agents collaborate intelligently.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4>RAG-Powered Retrieval</h4>
+                <p>Uses curated interview knowledge instead of generic responses.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4>Voice-Enabled Experience</h4>
+                <p>IBM Watson STT and TTS enable realistic mock interviews.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4>Automated Evaluation</h4>
+                <p>Scores answers and identifies improvement opportunities.</p>
+            </div>
+
+            <div class="feature-box">
+                <h4>Readiness Assessment</h4>
+                <p>Provides complete interview readiness reports.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section>
+        <h2 class="section-title">Technology Stack</h2>
+
+        <div class="tech-grid">
+            <div class="tech">
+                <h3>IBM watsonx Orchestrate</h3>
+                <p>Multi-agent orchestration platform.</p>
+            </div>
+
+            <div class="tech">
+                <h3>GPT-OSS 120B</h3>
+                <p>Reasoning and response generation.</p>
+            </div>
+
+            <div class="tech">
+                <h3>RAG</h3>
+                <p>Knowledge retrieval and grounding.</p>
+            </div>
+
+            <div class="tech">
+                <h3>IBM Watson STT</h3>
+                <p>Speech-to-Text conversion.</p>
+            </div>
+
+            <div class="tech">
+                <h3>IBM Watson TTS</h3>
+                <p>Text-to-Speech conversion.</p>
+            </div>
+
+            <div class="tech">
+                <h3>Knowledge Base</h3>
+                <p>Java, Spring Boot, MySQL, DSA and company datasets.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        <h3>AI Interview Trainer Agent</h3>
+        <br>
+        <p>
+            Built using IBM watsonx Orchestrate, GPT-OSS 120B,
+            RAG, IBM Watson Speech Services and Agentic AI.
+        </p>
+    </div>
+
+    <!-- Pointer to Widget -->
+    <div class="pointer">
+        Here you go! 👇
+    </div>
+
+    <!-- IBM Orchestrate Widget -->
+    <div id="root"></div>
+
+    <!-- IBM Orchestrate Script -->
+    <script>
+        window.wxOConfiguration = {
+            orchestrationID: "ed557a7693944eb6a94a6558f1a5e639_bf1c6820-5a61-43b1-838a-6155f940e62f",
+            hostURL: "https://au-syd.watson-orchestrate.cloud.ibm.com",
+            rootElementID: "root",
+            deploymentPlatform: "ibmcloud",
+            crn: "crn:v1:bluemix:public:watsonx-orchestrate:au-syd:a/ed557a7693944eb6a94a6558f1a5e639:bf1c6820-5a61-43b1-838a-6155f940e62f::",
+            chatOptions: {
+                agentId: "2ba0b90f-3b8a-43c3-9ce9-b56f57c193f0",
+                agentEnvironmentId: "fb7b924c-1b18-438d-9980-acb07db098bf",
+            }
+        };
+
+        setTimeout(function() {
+            const script = document.createElement('script');
+            script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
+            script.addEventListener('load', function() {
+                wxoLoader.init();
+            });
+            document.head.appendChild(script);
+        }, 0);
+    </script>
 
 </body>
+
 </html>
